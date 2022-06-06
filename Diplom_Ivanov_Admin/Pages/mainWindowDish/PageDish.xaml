@@ -1,0 +1,110 @@
+﻿<Page x:Class="Diplom_Ivanov_Admin.Pages.mainWindowDish.PageDish"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplom_Ivanov_Admin.Pages.mainWindowDish" xmlns:Converters="clr-namespace:Diplom_Ivanov_Admin.resources.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Name ="window"
+      Title="Блюда">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10,100,0,0" HorizontalAlignment="Left">
+            <Button x:Name="addDish" Width="150" Height="30" Click="addDish_Click" FontSize="14" >Добавить</Button>
+            <Button x:Name="redactorDish" Click="redactorDish_Click" Width="150" Height="30" Margin="5,10" FontSize="14">Редактировать</Button>
+            <Button x:Name="deleteDish" Width="150" Height="30" Click="deleteDish_Click" FontSize="14" >Удалить</Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Width="200" Margin="10,230,0,0" HorizontalAlignment="Left">
+            <Expander IsExpanded="True" Header="Вид блюда">
+                <ListBox ItemsSource="{Binding SectionFilters, Mode=OneWay}" SelectionMode="Extended"
+                         BorderThickness="0" Background="Transparent">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"
+                                      Content="{Binding Category_Of_Dishes.Name}" IsChecked="{Binding IsChecked}"></CheckBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>                    
+                </ListBox>
+            </Expander>
+        </StackPanel>
+        <TextBox BorderBrush="#10101A" VerticalContentAlignment="Center"
+                 FontSize="16" TextChanged="TextBox_TextChanged" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="220,30,30,0" VerticalAlignment="Top" Height="35"
+                 Style="{StaticResource SearchTextBoxStyle}"></TextBox>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Roboto" FontSize="25" Margin="30" Text="{Binding ElementName=window,Path=Title}"></TextBlock>
+        <TabControl BorderThickness="0" Margin="220,100,35,35" ItemContainerStyle="{StaticResource tabItemStyle}">
+            <TabItem x:Name="_ti">
+                <TabItem.Header>
+                    <Image Margin="5" Width="20" Height="20">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{Binding ElementName=_ti, Path=Foreground}" Geometry="{StaticResource vec1}"></GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <ListBox x:Name="spisok" Margin="0" BorderThickness="0" Background="Transparent" ItemsSource="{Binding Dishes}"
+                             ItemContainerStyle="{StaticResource PetsItemstyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Width="250" Height="450">
+                                    <Image Margin="0,20,0,0" DockPanel.Dock="Top" Width="150" Height="250" Source="{Binding Image, Converter={StaticResource imageConv}}"></Image>
+                                    <TextBlock DockPanel.Dock="Top" Margin="20,0,0,0" Text="{Binding Name_dish}" TextAlignment="Left" FontSize="16" TextWrapping="Wrap"></TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="_ti2">
+                <TabItem.Header>
+                    <Image Margin="5" Width="20" Height="20">
+                        <Image.Source>
+                            <DrawingImage>
+                                <DrawingImage.Drawing>
+                                    <DrawingGroup>
+                                        <GeometryDrawing Brush="{Binding ElementName=_ti2, Path=Foreground}" Geometry="{StaticResource vec2}"></GeometryDrawing>
+                                    </DrawingGroup>
+                                </DrawingImage.Drawing>
+                            </DrawingImage>
+                        </Image.Source>
+                    </Image>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <DataGrid x:Name="spisok2" SelectionMode="Single" GridLinesVisibility="Horizontal"
+                              RowHeaderWidth="0" Background="Transparent"
+                              IsReadOnly="True" CanUserSortColumns="False" BorderThickness="0"
+                              ItemsSource="{Binding Dishes}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код Блюда" Binding="{Binding id_Dish}"></DataGridTextColumn>
+                            <DataGridTemplateColumn Width="100" Header="Изображение">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Height="100" Source="{Binding Image, Converter={StaticResource imageConv}}"></Image>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Name_dish}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Категория" Binding="{Binding Category_of_dishes.Name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Вес" Binding="{Binding Wheight}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Пищевая ценность" Binding="{Binding The_nutritional_value}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Состав" Binding="{Binding Compound}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

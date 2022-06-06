@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="49d539b114184cfea9dc92dc2a24004e" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="DiplomModel.Category_of_dishes" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Dishes" Width="1.5" PointX="3.125" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Dishes_in_Order" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Employee" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Order" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Orders_in_payment" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Payment_for_orders" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Table" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomModel.Admin" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="DiplomModel.FK_Dishes_Category_of_dishes1" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Dishes_in_Order_Dishes" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Dishes_in_Order_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Order_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Order_Table" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Orders_in_payment_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomModel.FK_Orders_in_payment_Payment_for_orders" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DiplomModel.Position" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="DiplomModel.FK_Employee_Position" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

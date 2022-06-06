@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DiplomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category_of_dishes">
+    <Key>
+      <PropertyRef Name="id_Category" />
+    </Key>
+    <Property Name="id_Category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Dishes" Relationship="Self.FK_Dishes_Category_of_dishes1" FromRole="Category_of_dishes" ToRole="Dishes" />
+  </EntityType>
+  <EntityType Name="Dishes">
+    <Key>
+      <PropertyRef Name="id_Dish" />
+    </Key>
+    <Property Name="id_Dish" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_dish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Wheight" Type="Int32" Nullable="false" />
+    <Property Name="The_nutritional_value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_category" Type="Int32" Nullable="false" />
+    <Property Name="Compound" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category_of_dishes" Relationship="Self.FK_Dishes_Category_of_dishes1" FromRole="Dishes" ToRole="Category_of_dishes" />
+    <NavigationProperty Name="Dishes_in_Order" Relationship="Self.FK_Dishes_in_Order_Dishes" FromRole="Dishes" ToRole="Dishes_in_Order" />
+  </EntityType>
+  <EntityType Name="Dishes_in_Order">
+    <Key>
+      <PropertyRef Name="id_dishes_in_order" />
+    </Key>
+    <Property Name="id_dishes_in_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="id_dish" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dishes" Relationship="Self.FK_Dishes_in_Order_Dishes" FromRole="Dishes_in_Order" ToRole="Dishes" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Dishes_in_Order_Order" FromRole="Dishes_in_Order" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id_Employee" />
+    </Key>
+    <Property Name="id_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date_of_Birth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Telephone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="id_Position" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Employee" FromRole="Employee" ToRole="Order" />
+    <NavigationProperty Name="Position" Relationship="DiplomModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="id_Order" />
+    </Key>
+    <Property Name="id_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="id_table" Type="Int32" Nullable="false" />
+    <Property Name="id_employee" Type="Int32" Nullable="false" />
+    <Property Name="Amount_of_orders" Type="Int32" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dishes_in_Order" Relationship="Self.FK_Dishes_in_Order_Order" FromRole="Order" ToRole="Dishes_in_Order" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Order_Employee" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Table" Relationship="Self.FK_Order_Table" FromRole="Order" ToRole="Table" />
+    <NavigationProperty Name="Orders_in_payment" Relationship="Self.FK_Orders_in_payment_Order" FromRole="Order" ToRole="Orders_in_payment" />
+  </EntityType>
+  <EntityType Name="Orders_in_payment">
+    <Key>
+      <PropertyRef Name="id_orders_in_payment" />
+    </Key>
+    <Property Name="id_orders_in_payment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="id_payment" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Orders_in_payment_Order" FromRole="Orders_in_payment" ToRole="Order" />
+    <NavigationProperty Name="Payment_for_orders" Relationship="Self.FK_Orders_in_payment_Payment_for_orders" FromRole="Orders_in_payment" ToRole="Payment_for_orders" />
+  </EntityType>
+  <EntityType Name="Payment_for_orders">
+    <Key>
+      <PropertyRef Name="id_payment" />
+    </Key>
+    <Property Name="id_payment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount_of_orders" Type="Int32" Nullable="false" />
+    <Property Name="Paid" Type="Int32" Nullable="false" />
+    <Property Name="Change" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders_in_payment" Relationship="Self.FK_Orders_in_payment_Payment_for_orders" FromRole="Payment_for_orders" ToRole="Orders_in_payment" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="id_Table" />
+    </Key>
+    <Property Name="id_Table" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number_table" Type="Int32" Nullable="false" />
+    <Property Name="Number_of_seats" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_Table" FromRole="Table" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="Surname" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Patrronymic" />
+    </Key>
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patrronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Dishes_Category_of_dishes1">
+    <End Role="Category_of_dishes" Type="Self.Category_of_dishes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category_of_dishes">
+        <PropertyRef Name="id_Category" />
+      </Principal>
+      <Dependent Role="Dishes">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dishes_in_Order_Dishes">
+    <End Role="Dishes" Type="Self.Dishes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dishes_in_Order" Type="Self.Dishes_in_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dishes">
+        <PropertyRef Name="id_Dish" />
+      </Principal>
+      <Dependent Role="Dishes_in_Order">
+        <PropertyRef Name="id_dish" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dishes_in_Order_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Dishes_in_Order" Type="Self.Dishes_in_Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_Order" />
+      </Principal>
+      <Dependent Role="Dishes_in_Order">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id_Employee" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Table">
+    <End Role="Table" Type="Self.Table" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table">
+        <PropertyRef Name="id_Table" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_table" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_in_payment_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders_in_payment" Type="Self.Orders_in_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="id_Order" />
+      </Principal>
+      <Dependent Role="Orders_in_payment">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_in_payment_Payment_for_orders">
+    <End Role="Payment_for_orders" Type="Self.Payment_for_orders" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders_in_payment" Type="Self.Orders_in_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment_for_orders">
+        <PropertyRef Name="id_payment" />
+      </Principal>
+      <Dependent Role="Orders_in_payment">
+        <PropertyRef Name="id_payment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category_of_dishes" EntityType="Self.Category_of_dishes" />
+    <EntitySet Name="Dishes" EntityType="Self.Dishes" />
+    <EntitySet Name="Dishes_in_Order" EntityType="Self.Dishes_in_Order" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Orders_in_payment" EntityType="Self.Orders_in_payment" />
+    <EntitySet Name="Payment_for_orders" EntityType="Self.Payment_for_orders" />
+    <EntitySet Name="Table" EntityType="Self.Table" />
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <AssociationSet Name="FK_Dishes_Category_of_dishes1" Association="Self.FK_Dishes_Category_of_dishes1">
+      <End Role="Category_of_dishes" EntitySet="Category_of_dishes" />
+      <End Role="Dishes" EntitySet="Dishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dishes_in_Order_Dishes" Association="Self.FK_Dishes_in_Order_Dishes">
+      <End Role="Dishes" EntitySet="Dishes" />
+      <End Role="Dishes_in_Order" EntitySet="Dishes_in_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dishes_in_Order_Order" Association="Self.FK_Dishes_in_Order_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Dishes_in_Order" EntitySet="Dishes_in_Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Employee" Association="Self.FK_Order_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Table" Association="Self.FK_Order_Table">
+      <End Role="Table" EntitySet="Table" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_in_payment_Order" Association="Self.FK_Orders_in_payment_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Orders_in_payment" EntitySet="Orders_in_payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_in_payment_Payment_for_orders" Association="Self.FK_Orders_in_payment_Payment_for_orders">
+      <End Role="Payment_for_orders" EntitySet="Payment_for_orders" />
+      <End Role="Orders_in_payment" EntitySet="Orders_in_payment" />
+    </AssociationSet>
+    <EntitySet Name="Position" EntityType="DiplomModel.Position" />
+    <AssociationSet Name="FK_Employee_Position" Association="DiplomModel.FK_Employee_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="id_Position" />
+    </Key>
+    <Property Name="id_Position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="DiplomModel.FK_Employee_Position" FromRole="Position" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_Employee_Position">
+    <End Type="DiplomModel.Position" Role="Position" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DiplomModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="id_Position" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="id_Position" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

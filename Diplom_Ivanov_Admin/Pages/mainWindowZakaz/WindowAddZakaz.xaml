@@ -1,0 +1,96 @@
+﻿<Window x:Class="Diplom_Ivanov_Admin.Pages.mainWindowZakaz.WindowAddZakaz"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom_Ivanov_Admin.Pages.mainWindowZakaz"
+        mc:Ignorable="d"
+        Title="Заказ" Height="477" Width="309">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    >
+            <TextBlock Text="Столик" FontSize="14"/>
+            <ComboBox x:Name="stoliccombobox"
+                     DisplayMemberPath="Number_table" SelectedItem="{Binding Table}"
+                     />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center"
+                    >
+            <TextBlock Text="Время заказа" FontSize="14"/>
+            <TextBox x:Name="times"
+                     Text="{Binding Time}"
+                     />
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="2"
+                    VerticalAlignment="Center"
+                    >
+            <TextBlock Text="Дата заказа" FontSize="14"/>
+            <DatePicker x:Name="datezakaz"
+                     Text="{Binding Date}"
+                        
+                       
+                     />
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="3"
+                    VerticalAlignment="Center"
+                    >
+            <TextBlock Text="Комментарий" FontSize="14"/>
+            <TextBox x:Name="note" 
+                     Text="{Binding Note}"
+                     />
+        </StackPanel>
+        <StackPanel Grid.Row="4"
+                    VerticalAlignment="Center"
+                    >
+            <TextBlock Text="Официант" FontSize="14"/>
+            <ComboBox x:Name="Employeecomobox" DisplayMemberPath="Name" 
+                      SelectedItem="{Binding Employee}" >
+            </ComboBox>
+
+        </StackPanel>
+        <StackPanel Grid.Row="5"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Блюда" FontSize="14" ></TextBlock>
+            <ComboBox x:Name="dishcombobox" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="{Binding Name}" IsChecked="{Binding IsCheched}"></CheckBox>
+                            <TextBox x:Name="kolcombobox" Text="{Binding colichestvo}" Width="40" HorizontalAlignment="Right"></TextBox>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                   
+            </ComboBox>
+        </StackPanel>
+
+
+
+        <Button Grid.Row="6"
+                Margin="15,18,15,21"
+                Content="Сохранить"
+                Click="Button_Click" FontSize="14">
+        </Button>
+
+    </Grid>
+</Window>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DiplomModelContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Category_of_dishes">
+      <EntityTypeMapping TypeName="DiplomModel.Category_of_dishes">
+        <MappingFragment StoreEntitySet="Category_of_dishes">
+          <ScalarProperty Name="id_Category" ColumnName="id_Category" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dishes">
+      <EntityTypeMapping TypeName="DiplomModel.Dishes">
+        <MappingFragment StoreEntitySet="Dishes">
+          <ScalarProperty Name="id_Dish" ColumnName="id_Dish" />
+          <ScalarProperty Name="Name_dish" ColumnName="Name_dish" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Wheight" ColumnName="Wheight" />
+          <ScalarProperty Name="The_nutritional_value" ColumnName="The_nutritional_value" />
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="Compound" ColumnName="Compound" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dishes_in_Order">
+      <EntityTypeMapping TypeName="DiplomModel.Dishes_in_Order">
+        <MappingFragment StoreEntitySet="Dishes_in_Order">
+          <ScalarProperty Name="id_dishes_in_order" ColumnName="id_dishes_in_order" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_dish" ColumnName="id_dish" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="DiplomModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="id_Employee" ColumnName="id_Employee" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+          <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="id_Position" ColumnName="id_Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="DiplomModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="id_Order" ColumnName="id_Order" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="id_table" ColumnName="id_table" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="Amount_of_orders" ColumnName="Amount_of_orders" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders_in_payment">
+      <EntityTypeMapping TypeName="DiplomModel.Orders_in_payment">
+        <MappingFragment StoreEntitySet="Orders_in_payment">
+          <ScalarProperty Name="id_orders_in_payment" ColumnName="id_orders_in_payment" />
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="id_payment" ColumnName="id_payment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment_for_orders">
+      <EntityTypeMapping TypeName="DiplomModel.Payment_for_orders">
+        <MappingFragment StoreEntitySet="Payment_for_orders">
+          <ScalarProperty Name="id_payment" ColumnName="id_payment" />
+          <ScalarProperty Name="Amount_of_orders" ColumnName="Amount_of_orders" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Change" ColumnName="Change" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table">
+      <EntityTypeMapping TypeName="DiplomModel.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="id_Table" ColumnName="id_Table" />
+          <ScalarProperty Name="Number_table" ColumnName="Number_table" />
+          <ScalarProperty Name="Number_of_seats" ColumnName="Number_of_seats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="DiplomModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Patrronymic" ColumnName="Patrronymic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position">
+      <EntityTypeMapping TypeName="DiplomModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_Position" ColumnName="id_Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

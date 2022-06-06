@@ -1,0 +1,19 @@
+﻿<Window x:Class="Diplom_Ivanov_Admin.WindowAutorizacia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom_Ivanov_Admin"
+        mc:Ignorable="d"
+        Title="FoodShef" Height="442" Width="299">
+    <Grid>
+
+        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Margin="85,182,0,0" TextChanged="TextBox_TextChanged"/>
+        <PasswordBox PasswordChanged="passwordTextBox_PasswordChanged" x:Name="passwordTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="85,232,0,0" Height="23"/>
+        <Button Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="95,285,0,0" Click="Button_Click" Height="25" FontSize="14"/>
+        <Image Source="resources/images/logo.png" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="95,35,0,0"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" Margin="85,161,0,0" FontSize="14"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" Margin="85,211,0,0" FontSize="14"/>
+
+    </Grid>
+</Window>
